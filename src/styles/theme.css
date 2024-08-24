@@ -1,0 +1,69 @@
+/* Light Theme Variables */
+body[data-theme='light'] {
+  --background-color: #f9f9f9;
+  --text-color: #333;
+  --container-background: #ffffff;
+  --header-color: #333;
+  --dropzone-background: #e9ecef;
+  --dropzone-border: #007bff;
+  --dropzone-active-background: #cfe2ff;
+  --dropzone-active-border: #0056b3;
+  --dropzone-text-color: #555;
+  --button-primary-background: #007bff;
+  --button-primary-hover: #0056b3;
+  --button-secondary-background: #e0e0e0;
+  --button-secondary-hover: #c0c0c0;
+  --button-success-background: #28a745;
+  --button-success-hover: #218838;
+  --preview-background: #f4f4f4;
+  --preview-box-shadow: rgba(0, 0, 0, 0.1);
+  --helper-text-color: #555;
+  --file-list-color: #555;
+  --output-settings-heading: #333;
+  --output-settings-label: #555;
+  --input-border: #ccc;
+  --input-background: #ffffff;
+  --quality-value-color: #777;
+  --merge-btn-background: #28a745;
+  --merge-btn-hover-background: #218838;
+  --reset-btn-background: #dc3545;
+  --reset-btn-hover-background: #c82333;
+  --download-btn-background: #007bff;
+  --download-btn-hover-background: #0056b3;
+  --merged-image-border: #ccc;
+}
+
+/* Dark Theme Variables */
+body[data-theme='dark'] {
+  --background-color: #2d2d2d;
+  --text-color: #f9f9f9;
+  --container-background: #3c3c3c;
+  --header-color: #f9f9f9;
+  --dropzone-background: #4a4a4a;
+  --dropzone-border: #80bdff;
+  --dropzone-active-background: #0056b3;
+  --dropzone-active-border: #007bff;
+  --dropzone-text-color: #cccccc;
+  --button-primary-background: #0069d9;
+  --button-primary-hover: #0056b3;
+  --button-secondary-background: #555555;
+  --button-secondary-hover: #444444;
+  --button-success-background: #1e7e34;
+  --button-success-hover: #155724;
+  --preview-background: #444444;
+  --preview-box-shadow: rgba(0, 0, 0, 0.2);
+  --helper-text-color: #aaaaaa;
+  --file-list-color: #cccccc;
+  --output-settings-heading: #f9f9f9;
+  --output-settings-label: #cccccc;
+  --input-border: #555555;
+  --input-background: #4a4a4a;
+  --quality-value-color: #cccccc;
+  --merge-btn-background: #1e7e34;
+  --merge-btn-hover-background: #155724;
+  --reset-btn-background: #bd2130;
+  --reset-btn-hover-background: #a71d2a;
+  --download-btn-background: #0069d9;
+  --download-btn-hover-background: #0056b3;
+  --merged-image-border: #555555;
+}

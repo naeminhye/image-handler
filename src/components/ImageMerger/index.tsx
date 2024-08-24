@@ -43,11 +43,12 @@ const ImageMerger: React.FC = () => {
       })
     );
 
-    const mergedImage = await mergeImages(imgElements, {
+    const options: MergeOptions = {
       format,
       quality,
       direction,
-    });
+    };
+    const mergedImage = await mergeImages(imgElements, options);
     setOutput(mergedImage);
   };
 
@@ -63,7 +64,11 @@ const ImageMerger: React.FC = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept,
     onDrop: (acceptedFiles) => {
-      setImages(acceptedFiles);
+      if (acceptedFiles.length <= 10) {
+        setImages(acceptedFiles);
+      } else {
+        alert('You can upload up to 10 images at a time.');
+      }
     },
   });
 
@@ -76,11 +81,12 @@ const ImageMerger: React.FC = () => {
         className={`dropzone ${isDragActive ? 'active' : ''}`}
       >
         <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Drop the images here...</p>
-        ) : (
-          <p>Drag & drop images here, or click to select images</p>
-        )}
+        <p>
+          {isDragActive
+            ? 'Drop the images here...'
+            : 'Drag & drop images here, or click to select images'}
+        </p>
+        <p className="helper-text">You can upload up to 10 images at a time.</p>
       </div>
 
       {images.length > 0 && (
@@ -95,7 +101,7 @@ const ImageMerger: React.FC = () => {
       )}
 
       <div className="output-settings">
-        <h2>Output Settings</h2>
+        <h2>Options</h2>
 
         <label>
           Direction:
@@ -138,10 +144,18 @@ const ImageMerger: React.FC = () => {
         </label>
 
         <div className="buttons">
-          <button onClick={handleMerge} className="merge-btn">
+          <button
+            onClick={handleMerge}
+            className="merge-btn"
+            disabled={images.length === 0}
+          >
             Merge Images
           </button>
-          <button onClick={handleReset} className="reset-btn">
+          <button
+            onClick={handleReset}
+            className="reset-btn"
+            disabled={images.length === 0}
+          >
             Reset
           </button>
           {output && (

@@ -1,18 +1,13 @@
+/* Import Theme Variables */
+@import '../../styles/theme.css';
+
 /* General Styles */
 body {
   font-family: 'Nunito', sans-serif;
-  background-color: #f4f6f9;
-  color: #333;
+  background-color: var(--background-color);
+  color: var(--text-color);
   line-height: 1.6;
-}
-
-.container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1,
@@ -23,13 +18,14 @@ h2 {
 h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #007bff;
+  color: var(--heading-color);
   text-align: center;
 }
 
 h2 {
   font-size: 1.125rem;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 .mb {
@@ -43,21 +39,21 @@ h2 {
 /* Dropzone Styling */
 .dropzone {
   padding: 40px;
-  border: 2px dashed #007bff;
+  border: 2px dashed var(--dropzone-border);
   border-radius: 10px;
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: var(--dropzone-background);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .dropzone p {
   font-size: 1rem;
-  color: #555;
+  color: var(--dropzone-text-color);
 }
 
 .dropzone.active {
-  background-color: #e0e0e0;
+  background-color: var(--dropzone-active-background);
 }
 
 /* Button Styling */
@@ -73,7 +69,7 @@ button {
   font-weight: 600;
   padding: 12px 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px var(--preview-box-shadow);
   transition: background-color 0.3s ease;
 }
 
@@ -82,44 +78,56 @@ button:focus {
 }
 
 .bg-primary {
-  background-color: #007bff;
+  background-color: var(--button-primary-background);
   color: white;
 }
 
 .bg-primary:hover {
-  background-color: #0056b3;
+  background-color: var(--button-primary-hover);
 }
 
 .bg-secondary {
-  background-color: #e0e0e0;
-  color: #555;
+  background-color: var(--button-secondary-background);
+  color: var(--dropzone-text-color);
 }
 
 .bg-secondary:hover {
-  background-color: #c0c0c0;
+  background-color: var(--button-secondary-hover);
 }
 
 .bg-success {
-  background-color: #28a745;
+  background-color: var(--button-success-background);
   color: white;
 }
 
 .bg-success:hover {
-  background-color: #218838;
+  background-color: var(--button-success-hover);
 }
 
 /* Preview Area Styling */
 .preview {
   margin-top: 30px;
   padding: 20px;
-  background-color: #f4f4f4;
+  background-color: var(--preview-background);
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px var(--preview-box-shadow);
 }
 
 .preview img {
   max-width: 100%;
   margin-bottom: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--preview-box-shadow);
+}
+
+select,
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-background);
+  font-size: 1rem;
+  color: var(--text-color);
 }

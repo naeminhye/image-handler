@@ -1,32 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import Header from './components/Header';
 import ImageMerger from './components/ImageMerger';
 import ImageSplitter from './components/ImageSplitter';
-import './App.css';
+
+import { ThemeProvider } from './contexts/ThemeContext';
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <div className="app-container">
-        <nav className="menu">
-          <ul className="menu-list">
-            <li>
-              <Link to="/merger">Image Merger</Link>
-            </li>
-            <li>
-              <Link to="/splitter">Image Splitter</Link>
-            </li>
-          </ul>
-        </nav>
+    <ThemeProvider>
+      <Router>
+        <Header />
         <div className="content">
           <Routes>
-            <Route path="/splitter" element={<ImageSplitter />} />
-            <Route path="/*" element={<ImageMerger />} />
+            <Route path="/merge" element={<ImageMerger />} />
+            <Route path="/split" element={<ImageSplitter />} />
           </Routes>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 };
 

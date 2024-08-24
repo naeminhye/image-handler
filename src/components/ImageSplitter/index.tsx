@@ -7,9 +7,9 @@ import './style.css';
 
 const ImageSplitter: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
-  const [splits, setSplits] = useState<HTMLCanvasElement[]>([]);
+  const [splits, setSplits] = useState<string[]>([]);
   const [splitDirection, setSplitDirection] = useState<
-    'vertical' | 'horizontal' | 'both'
+    'vertical' | 'horizontal'
   >('vertical');
   const [splitBy, setSplitBy] = useState<'quantity' | 'dimension'>('quantity');
   const [quantity, setQuantity] = useState<number>(2);
@@ -39,17 +39,20 @@ const ImageSplitter: React.FC = () => {
           dimension,
         };
         const newSplits = await splitImage(img, options);
-        setSplits(newSplits);
+        const splitImages = newSplits.map((canvas) =>
+          canvas.toDataURL(format, quality)
+        );
+        setSplits(splitImages);
       };
     };
     reader.readAsDataURL(image);
   };
 
   const handleDownloadAll = () => {
-    splits.forEach((canvas, index) => {
+    splits.forEach((src, index) => {
       const link = document.createElement('a');
-      link.href = canvas.toDataURL();
-      link.download = `split-image-${index + 1}.png`;
+      link.href = src;
+      link.download = `split-image-${index + 1}.${format.split('/')[1]}`;
       link.click();
     });
   };
@@ -88,14 +91,6 @@ const ImageSplitter: React.FC = () => {
             }`}
           >
             Horizontally
-          </button>
-          <button
-            onClick={() => setSplitDirection('both')}
-            className={`${
-              splitDirection === 'both' ? 'bg-primary' : 'bg-secondary'
-            }`}
-          >
-            Both (grid)
           </button>
         </div>
       </div>
@@ -178,30 +173,32 @@ const ImageSplitter: React.FC = () => {
         <span className="text-sm">{quality}</span>
       </div>
 
-      <button
-        onClick={handleSplit}
-        className="bg-primary hover:bg-primary-dark text-white rounded"
-      >
-        Split Image
-      </button>
+      <div className="buttons">
+        <button
+          onClick={handleSplit}
+          className="bg-primary hover:bg-primary-dark text-white rounded"
+        >
+          Split Image
+        </button>
 
-      <div className="preview">
-        {splits.map((canvas, index) => (
-          <div key={index} className="split-image">
-            <canvas
-              ref={(ref) => ref?.getContext('2d')?.drawImage(canvas, 0, 0)}
-            />
-          </div>
-        ))}
+        {splits.length > 0 && (
+          <button
+            onClick={handleDownloadAll}
+            className="bg-success hover:bg-success-dark text-white rounded"
+          >
+            Download All
+          </button>
+        )}
       </div>
 
       {splits.length > 0 && (
-        <button
-          onClick={handleDownloadAll}
-          className="bg-success hover:bg-success-dark text-white rounded"
-        >
-          Download All
-        </button>
+        <div className="preview">
+          {splits.map((src, index) => (
+            <div key={index} className="split-image">
+              <img src={src} alt={`Split part ${index + 1}`} />
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
