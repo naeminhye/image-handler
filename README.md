@@ -1,46 +1,82 @@
-# Getting Started with Create React App
+# Image Splitter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Image Splitter is a React TypeScript application that allows users to upload an image, split it into multiple smaller images based on various configurations, and download the split images. The application supports vertical, horizontal, and grid (both directions) splitting and allows users to control the number of blocks or block dimensions. Users can also choose the output format and quality for the split images.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Drag & Drop**: Easily upload images by dragging and dropping them into the application.
+- **Splitting Options**: Choose to split images vertically, horizontally, or in a grid format.
+- **Custom Splitting**: Split by a specific number of blocks or define the exact height/width of blocks.
+- **Format and Quality**: Select the output image format (JPEG, PNG, WebP) and adjust the quality.
+- **Preview and Download**: Preview split images before downloading and download all images with a single click.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **React**: Front-end library for building user interfaces.
+- **TypeScript**: Typed superset of JavaScript that enhances code quality and maintainability.
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
+- **react-dropzone**: Library for handling drag-and-drop file uploads.
+- **HTML5 Canvas**: For rendering and manipulating the split images.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `npm test`
+1. **Clone the repository:**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   git clone https://github.com/yourusername/image-splitter.git
+   cd image-splitter
+   ```
 
-### `npm run build`
+2. **Install dependencies:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Start the development server:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   npm start
+   ```
 
-### `npm run eject`
+   This will start the application in development mode on `http://localhost:3000`.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Usage
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Upload an Image**: Drag and drop an image into the dropzone or click to select an image from your file system.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. **Configure Splitting**:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   - Choose the splitting direction (vertical, horizontal, or both).
+   - Define the splitting method: by quantity of blocks or by block dimension (height/width).
+   - Set the number of blocks or the specific dimension for splitting.
 
-## Learn More
+3. **Select Format and Quality**:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   - Choose the output format (JPEG, PNG, WebP).
+   - Adjust the quality of the output images.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. **Preview and Download**:
+   - Click "Split Image" to preview the split images.
+   - Click "Download All" to download the split images in the specified format and quality.
+
+## Project Structure
+
+- **src/components**: Contains the main React components, including `ImageSplitter.tsx`.
+- **src/utils**: Contains utility functions, such as `imageProcessor.ts` for handling image splitting logic.
+- **src/style.css**: Contains the global styles for the application.
+
+## Contributing
+
+Contributions are welcome! If you have any ideas or suggestions, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+- [TypeScript](https://www.typescriptlang.org/) - A strongly typed programming language that builds on JavaScript.
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework.
+- [react-dropzone](https://react-dropzone.js.org/) - Simple React hook to create a HTML5-compliant drag-and-drop zone.
