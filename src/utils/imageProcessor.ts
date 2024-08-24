@@ -1,8 +1,24 @@
+import { Accept } from 'react-dropzone';
+
 export interface MergeOptions {
   format: 'image/jpeg' | 'image/png' | 'image/webp';
   quality: number;
   direction: 'vertical' | 'horizontal';
 }
+
+export interface SplitOptions {
+  splitDirection: 'vertical' | 'horizontal' | 'both';
+  splitBy: 'quantity' | 'dimension';
+  quantity: number;
+  dimension: number;
+}
+
+// Specify the accept type properly
+export const accept: Accept = {
+  'image/jpeg': ['.jpeg', '.jpg'],
+  'image/png': ['.png'],
+  'image/webp': ['.webp'],
+};
 
 export const mergeImages = async (
   images: HTMLImageElement[],
@@ -38,4 +54,39 @@ export const mergeImages = async (
   }
 
   return canvas.toDataURL(options.format, options.quality);
+};
+export const splitImage = async (
+  image: HTMLImageElement,
+  options: SplitOptions
+): Promise<HTMLCanvasElement[]> => {
+  const { splitDirection, splitBy, quantity, dimension } = options;
+  const canvasWidth =
+    splitDirection === 'horizontal' ? image.width / quantity : image.width;
+  const canvasHeight =
+    splitDirection === 'vertical' ? image.height / quantity : image.height;
+
+  const splits: HTMLCanvasElement[] = [];
+
+  for (let i = 0; i < quantity; i++) {
+    const canvas = document.createElement('canvas');
+    canvas.width = splitBy === 'dimension' ? dimension : canvasWidth;
+    canvas.height = splitBy === 'dimension' ? dimension : canvasHeight;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.drawImage(
+        image,
+        splitDirection === 'horizontal' ? i * canvasWidth : 0,
+        splitDirection === 'vertical' ? i * canvasHeight : 0,
+        canvasWidth,
+        canvasHeight,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+      splits.push(canvas);
+    }
+  }
+
+  return splits;
 };

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Accept, useDropzone } from 'react-dropzone';
+import { useDropzone } from 'react-dropzone';
 
-import { mergeImages, MergeOptions } from '../../utils/imageProcessor';
+import { accept, mergeImages, MergeOptions } from '../../utils/imageProcessor';
 
 import './style.css';
 
@@ -59,13 +59,6 @@ const ImageMerger: React.FC = () => {
     setDirection('vertical');
   };
 
-  // Specify the accept type properly
-  const accept: Accept = {
-    'image/jpeg': ['.jpeg', '.jpg'],
-    'image/png': ['.png'],
-    'image/webp': ['.webp'],
-  };
-
   // Set up react-dropzone for drag and drop functionality
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept,
@@ -116,7 +109,6 @@ const ImageMerger: React.FC = () => {
             <option value="horizontal">Horizontal</option>
           </select>
         </label>
-
         <label>
           Format:
           <select

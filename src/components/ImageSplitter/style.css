@@ -1,0 +1,125 @@
+/* General Styles */
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #007bff;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.mb {
+  margin-bottom: 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Dropzone Styling */
+.dropzone {
+  padding: 40px;
+  border: 2px dashed #007bff;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropzone p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.dropzone.active {
+  background-color: #e0e0e0;
+}
+
+/* Button Styling */
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+button:focus {
+  outline: none;
+}
+
+.bg-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.bg-primary:hover {
+  background-color: #0056b3;
+}
+
+.bg-secondary {
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+.bg-secondary:hover {
+  background-color: #c0c0c0;
+}
+
+.bg-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.bg-success:hover {
+  background-color: #218838;
+}
+
+/* Preview Area Styling */
+.preview {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.preview img {
+  max-width: 100%;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
