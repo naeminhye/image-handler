@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { IoIosMoon, IoIosSunny } from 'react-icons/io';
+import React from "react";
+import { Link } from "react-router-dom";
+import { IoIosMoon, IoIosSunny } from "react-icons/io";
 
-import { useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from "../../contexts/ThemeContext";
 
-import './style.css';
+import "./style.css";
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -17,17 +17,20 @@ const Header: React.FC = () => {
       <nav className="menu">
         <ul>
           <li>
-            <Link to="/merge">Merge Images</Link>
+            <Link to="/">Merge Images</Link>
           </li>
           <li>
             <Link to="/split">Split Image</Link>
           </li>
+          {/* <li>
+            <Link to="/case-converter">Case Converter</Link>
+          </li> */}
         </ul>
       </nav>
       <div className="theme-toggle">
         <button onClick={toggleTheme}>
-          {theme === 'light' ? <IoIosMoon /> : <IoIosSunny />}
-          {theme === 'light' ? ' Dark Mode' : ' Light Mode'}
+          {theme === "light" ? <IoIosMoon /> : <IoIosSunny />}
+          {theme === "light" ? " Dark Mode" : " Light Mode"}
         </button>
       </div>
     </header>

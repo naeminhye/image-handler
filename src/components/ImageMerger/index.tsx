@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { useDropzone } from 'react-dropzone';
+import React, { useState, useEffect } from "react";
+import { useDropzone } from "react-dropzone";
 
-import { accept, mergeImages, MergeOptions } from '../../utils/imageProcessor';
+import { accept, mergeImages, MergeOptions } from "../../utils/imageProcessor";
 
-import './style.css';
+import "./style.css";
 
 const ImageMerger: React.FC = () => {
   const [images, setImages] = useState<File[]>([]);
   const [output, setOutput] = useState<string | null>(null);
-  const [format, setFormat] = useState<MergeOptions['format']>('image/jpeg');
+  const [format, setFormat] = useState<MergeOptions["format"]>("image/jpeg");
   const [quality, setQuality] = useState<number>(1); // Set default quality to 1
   const [direction, setDirection] =
-    useState<MergeOptions['direction']>('vertical');
+    useState<MergeOptions["direction"]>("vertical");
+  const [fileName, setFileName] = useState<string>("");
 
   useEffect(() => {
     if (images.length > 0) {
       const fileType = images[0].type;
-      if (fileType.includes('jpeg')) {
-        setFormat('image/jpeg');
-      } else if (fileType.includes('png')) {
-        setFormat('image/png');
-      } else if (fileType.includes('webp')) {
-        setFormat('image/webp');
+      if (fileType.includes("jpeg")) {
+        setFormat("image/jpeg");
+      } else if (fileType.includes("png")) {
+        setFormat("image/png");
+      } else if (fileType.includes("webp")) {
+        setFormat("image/webp");
       }
     }
   }, [images]);
@@ -55,9 +56,10 @@ const ImageMerger: React.FC = () => {
   const handleReset = () => {
     setImages([]);
     setOutput(null);
-    setFormat('image/jpeg');
+    setFormat("image/jpeg");
     setQuality(1);
-    setDirection('vertical');
+    setDirection("vertical");
+    setFileName("");
   };
 
   // Set up react-dropzone for drag and drop functionality
@@ -66,8 +68,13 @@ const ImageMerger: React.FC = () => {
     onDrop: (acceptedFiles) => {
       if (acceptedFiles.length <= 10) {
         setImages(acceptedFiles);
+        if (acceptedFiles.length > 0 && fileName === "") {
+          const newFileName = acceptedFiles.map((file) => file.name).join("-");
+          console.log("file", newFileName);
+          setFileName(newFileName);
+        }
       } else {
-        alert('You can upload up to 10 images at a time.');
+        alert("You can upload up to 10 images at a time.");
       }
     },
   });
@@ -78,13 +85,13 @@ const ImageMerger: React.FC = () => {
 
       <div
         {...getRootProps()}
-        className={`dropzone ${isDragActive ? 'active' : ''}`}
+        className={`dropzone ${isDragActive ? "active" : ""}`}
       >
         <input {...getInputProps()} />
         <p>
           {isDragActive
-            ? 'Drop the images here...'
-            : 'Drag & drop images here, or click to select images'}
+            ? "Drop the images here..."
+            : "Drag & drop images here, or click to select images"}
         </p>
         <p className="helper-text">You can upload up to 10 images at a time.</p>
       </div>
@@ -108,7 +115,7 @@ const ImageMerger: React.FC = () => {
           <select
             value={direction}
             onChange={(e) =>
-              setDirection(e.target.value as MergeOptions['direction'])
+              setDirection(e.target.value as MergeOptions["direction"])
             }
           >
             <option value="vertical">Vertical</option>
@@ -120,7 +127,7 @@ const ImageMerger: React.FC = () => {
           <select
             value={format}
             onChange={(e) =>
-              setFormat(e.target.value as MergeOptions['format'])
+              setFormat(e.target.value as MergeOptions["format"])
             }
           >
             <option value="image/jpeg">JPEG</option>
@@ -143,6 +150,14 @@ const ImageMerger: React.FC = () => {
           <span className="quality-value">{quality}</span>
         </label>
 
+        <label>
+          File name:
+          <input
+            value={fileName}
+            onChange={(e) => setFileName(e.target.value)}
+          />
+        </label>
+
         <div className="buttons">
           <button
             onClick={handleMerge}
@@ -161,7 +176,7 @@ const ImageMerger: React.FC = () => {
           {output && (
             <a
               href={output}
-              download={`merged-image.${format.split('/')[1]}`}
+              download={`${fileName || "download"}.${format.split("/")[1]}`}
               className="download-btn"
             >
               Download Image
