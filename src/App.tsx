@@ -6,6 +6,7 @@ import Base64Image from "./components/Base64Image";
 import CaseConverter from "./components/CaseConverter";
 import ImageMerger from "./components/ImageMerger";
 import ImageSplitter from "./components/ImageSplitter";
+import ImageGenerator from "./components/ImageGenerator";
 
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -20,6 +21,7 @@ const App: React.FC = () => {
             <Route path="/split" element={<ImageSplitter />} />
             <Route path="/case-converter" element={<CaseConverter />} />
             <Route path="/base64" element={<Base64Image />} />
+            <Route path="/generator" element={<ImageGenerator />} />
           </Routes>
         </div>
       </Router>

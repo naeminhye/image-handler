@@ -22,9 +22,12 @@ const Header: React.FC = () => {
           <li>
             <Link to="/split">Split Image</Link>
           </li>
-          {/* <li>
+          <li>
             <Link to="/case-converter">Case Converter</Link>
-          </li> */}
+          </li>
+          <li>
+            <Link to="/generator">Image Generator</Link>
+          </li>
         </ul>
       </nav>
       <div className="theme-toggle">

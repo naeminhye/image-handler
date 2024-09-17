@@ -45,7 +45,7 @@ export const toPathCase = (text: string): string => {
 export const toSentenceCase = (text: string): string => {
   return text
     .toLowerCase()
-    .replace(/(^\s*\w|[\.\!\?]\s*\w)/g, (char) => char.toUpperCase());
+    .replace(/(^\s*\w|[.!?]\s*\w)/g, (char) => char.toUpperCase());
 };
 
 export const toSnakeCase = (text: string): string => {

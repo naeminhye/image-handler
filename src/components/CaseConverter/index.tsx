@@ -38,7 +38,7 @@ const CaseConverter: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Case Converter</h2>
       <textarea
         rows={5}

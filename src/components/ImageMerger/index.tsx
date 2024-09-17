@@ -69,7 +69,9 @@ const ImageMerger: React.FC = () => {
       if (acceptedFiles.length <= 10) {
         setImages(acceptedFiles);
         if (acceptedFiles.length > 0 && fileName === "") {
-          const newFileName = acceptedFiles.map((file) => file.name).join("-");
+          const newFileName = acceptedFiles
+            .map((file) => file.name.split(".")[0])
+            .join("-");
           console.log("file", newFileName);
           setFileName(newFileName);
         }
