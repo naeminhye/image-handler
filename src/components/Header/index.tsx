@@ -28,6 +28,12 @@ const Header: React.FC = () => {
           <li>
             <Link to="/generator">Image Generator</Link>
           </li>
+          <li>
+            <Link to="/ocr">Tesseract OCR</Link>
+          </li>
+          <li>
+            <Link to="/html-converter">HTML Converter</Link>
+          </li>
         </ul>
       </nav>
       <div className="theme-toggle">

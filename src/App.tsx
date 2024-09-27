@@ -7,6 +7,8 @@ import CaseConverter from "./components/CaseConverter";
 import ImageMerger from "./components/ImageMerger";
 import ImageSplitter from "./components/ImageSplitter";
 import ImageGenerator from "./components/ImageGenerator";
+import TesseractOCR from "./components/TesseractOCR";
+import HtmlConverter from "./components/HtmlConverter";
 
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -22,6 +24,8 @@ const App: React.FC = () => {
             <Route path="/case-converter" element={<CaseConverter />} />
             <Route path="/base64" element={<Base64Image />} />
             <Route path="/generator" element={<ImageGenerator />} />
+            <Route path="/ocr" element={<TesseractOCR />} />
+            <Route path="/html-converter" element={<HtmlConverter />} />
           </Routes>
         </div>
       </Router>
