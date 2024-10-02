@@ -48,28 +48,28 @@ type PageProps = {
   width: number;
 };
 
-async function postData(url = "", data = {}) {
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+// async function postData(url = "", data = {}) {
+//   try {
+//     const response = await fetch(url, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(data),
+//     });
 
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
+//     if (!response.ok) {
+//       throw new Error("Network response was not ok");
+//     }
 
-    const pages = await response.json();
-    console.log(pages);
-    return pages;
-  } catch (error) {
-    console.error("Error:", error);
-    return null;
-  }
-}
+//     const pages = await response.json();
+//     console.log(pages);
+//     return pages;
+//   } catch (error) {
+//     console.error("Error:", error);
+//     return null;
+//   }
+// }
 
 const RidiImageGenerater: React.FC = () => {
   const [bookId, setBookId] = useState("");
@@ -78,16 +78,16 @@ const RidiImageGenerater: React.FC = () => {
   const [pageInput, setPageInput] = useState<string>("");
   const [zipFolderName, setZipFolderName] = useState<string>("");
   const [isDownloading, setDownloading] = useState(false);
-  const handleGenerate = async () => {
-    const data = { book_id: bookId };
-    const response = await postData(
-      "https://ridibooks.com/api/web-viewer/generate",
-      data
-    );
-    if (response) {
-      setPages(response?.data?.pages || []);
-    }
-  };
+  // const handleGenerate = async () => {
+  //   const data = { book_id: bookId };
+  //   const response = await postData(
+  //     "https://ridibooks.com/api/web-viewer/generate",
+  //     data
+  //   );
+  //   if (response) {
+  //     setPages(response?.data?.pages || []);
+  //   }
+  // };
 
   const handleDownloadAll = async () => {
     if (pages?.length) {
@@ -110,7 +110,9 @@ const RidiImageGenerater: React.FC = () => {
     if (pages?.length) {
       setDownloading(true);
       const zip = new JSZip();
-      const folder = zip.folder("images");
+      const folder = zip.folder(
+        zipFolderName !== "" ? zipFolderName : "images"
+      );
       let imageIndex = 1;
       for (const page of pages) {
         try {
@@ -149,7 +151,6 @@ const RidiImageGenerater: React.FC = () => {
         onChange={(e) => setBookId(e.target.value)}
         placeholder="Enter Book ID"
       />
-      <button onClick={handleGenerate}>Generate By Book ID</button>
       <textarea
         value={pageInput}
         onChange={(e) => setPageInput(e.target.value)}
@@ -187,20 +188,15 @@ const RidiImageGenerater: React.FC = () => {
       )}
 
       {pages && (
-        <div>
-          <h3>Generated Images</h3>
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-          >
-            {pages.map((page, index) => (
-              <img
-                key={index}
-                src={page.src}
-                alt={`${index + 1}`}
-                width={page.width}
-              />
-            ))}
-          </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          {pages.map((page, index) => (
+            <img
+              key={index}
+              src={page.src}
+              alt={`${index + 1}`}
+              width={page.width}
+            />
+          ))}
         </div>
       )}
     </div>
