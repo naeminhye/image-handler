@@ -13,6 +13,7 @@ const ImageSwapper: React.FC = () => {
   return (
     <div className="container">
       <h1>Image Swapper</h1>
+
       <div>
         <button onClick={() => handleTabChange("encoder")}>
           Image Encoder
