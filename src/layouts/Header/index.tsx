@@ -28,8 +28,11 @@ const Header: React.FC = () => {
           <li>
             <Link to="/generator">Image Generator</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/ocr">Tesseract OCR</Link>
+          </li> */}
+          <li>
+            <Link to="/swap">Image Swapper</Link>
           </li>
           <li>
             <Link to="/html-converter">HTML Converter</Link>
